@@ -10,10 +10,10 @@ public class Grid{
 	private int height = 10;
 	System.Int32 Height { get { return this.height; } set { height = value; } }
 
-	private List<Tile> TileTab = new ArrayList<>(); 
+	private List<Tile> TileTab = new ArrayList<Tile>(); 
 
 
-	public void Grid(){
+	public Grid(){
 
 		for(int i=0;i<height;i++){
 			for(int j=0;j<width;j++){

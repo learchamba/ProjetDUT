@@ -14,7 +14,7 @@ public class Tile{
 	System.Int32 PositionY { get { return this.positionY; } set { positionY = value; } }
 
 
-	public void Tile( int x ,int y){
+	public Tile( int x ,int y){
 		if ( x > 0 )
 			PositionX = x;
 		else throw new UnityException();
