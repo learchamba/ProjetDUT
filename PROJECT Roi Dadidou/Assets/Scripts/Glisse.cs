@@ -5,7 +5,8 @@ public class Glisse : MonoBehaviour {
 	Vector3 pos;                                // For movement
 	float speed = 4.0f; 
 	bool moving = false;
-	string direction;
+	string direction = null;
+	PlayerWalk player;
 	// Use this for initialization
 	void Start () {
 		pos = transform.position;
@@ -14,41 +15,31 @@ public class Glisse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (moving == true) {
-			if (direction == "droite")
+			if (direction == "right")
 				pos.x++;
-			if (direction == "gauche")
+			if (direction == "left")
 				pos.x--;
-			if (direction == "haut")
+			if (direction == "up")
 				pos.y++;
-			if (direction == "bas")
+			if (direction == "down")
 				pos.y--;
 
 			transform.position = Vector3.MoveTowards (transform.position, pos, Time.deltaTime * speed);
 		}
+
 	}
 
 	void OnCollisionExit2D(Collision2D collision){
 
 		if (collision.gameObject.tag == "Player") {
 			moving = true;
-			if (collision.gameObject.transform.position.x < pos.x) {
-				direction="droite";
-			}
-
-			if (collision.gameObject.transform.position.y < pos.y) {
-				direction="haut";
-			} 
-
-			if (collision.gameObject.transform.position.x > pos.x) {
-				direction="gauche";
-			}
-			
-			if (collision.gameObject.transform.position.y > pos.y) {
-				direction="bas";
-			}
+			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
+			direction = player.getLastInput();
 		} else {
+			moving = false;
 			pos.x = Mathf.Round (transform.position.x);
 			pos.y = Mathf.Round (transform.position.y);
+			transform.position = pos;
 		}
 	}
 
@@ -56,6 +47,11 @@ public class Glisse : MonoBehaviour {
 		moving = false;
 		pos.x = Mathf.Round (transform.position.x);
 		pos.y = Mathf.Round (transform.position.y);
+		transform.position = pos;
+	}
+
+	void OnCollisionStay2D(Collision2D collision){
+
 	}
 
 }

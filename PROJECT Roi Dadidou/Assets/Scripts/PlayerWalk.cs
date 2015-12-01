@@ -7,6 +7,7 @@ public class PlayerWalk : MonoBehaviour {
 	int time = 0;
 	public int width;
 	public int height;
+	string lastInput;
 	
 	void Start () {
 		pos = transform.position;          // Take the initial position
@@ -15,18 +16,22 @@ public class PlayerWalk : MonoBehaviour {
 	void FixedUpdate () {
 		if((Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow)) && transform.position == pos  ) {        // Left
 			pos += Vector3.left;
+			lastInput="left";
 			time = 0;
 		}
 		if((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && transform.position == pos ) {        // Right
 			pos += Vector3.right;
+			lastInput="right";
 			time = 0;
 		}
 		if((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow)) && transform.position == pos ) {        // Up
 			pos += Vector3.up;
+			lastInput="up";
 			time = 0;
 		}
 		if((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && transform.position == pos ) {        // Down
 			pos += Vector3.down;
+			lastInput="down";
 			time = 0;
 		}
 		time++;
@@ -36,5 +41,9 @@ public class PlayerWalk : MonoBehaviour {
 		}
 		else
 			transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
+	}
+
+	public string getLastInput(){
+		return lastInput;
 	}
 }
