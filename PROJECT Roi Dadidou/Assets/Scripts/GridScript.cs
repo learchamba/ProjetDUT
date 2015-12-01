@@ -10,9 +10,9 @@ public class GridScript : MonoBehaviour {
 
 	void Start()
 	{
-		for(int i = 0;i<height;i++)
+		for(int i = 0;i<width;i++)
 		{
-			for(int j = 0;j<width;j++)
+			for(int j = 0;j<height;j++)
 			{
 				if (i == 0 || j == 0 || i == width - 1 || j == height - 1){
 					wall = Instantiate(wall,new Vector3(i, j, 0),Quaternion.identity);
