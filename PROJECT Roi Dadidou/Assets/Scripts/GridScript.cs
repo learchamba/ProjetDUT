@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GridScript : MonoBehaviour {
-	public Object go;
+	public Object ground;
+	public Object wall;
 	public int width;
 	public int height;
 
@@ -13,8 +14,14 @@ public class GridScript : MonoBehaviour {
 		{
 			for(int j = 0;j<width;j++)
 			{
-				go = Instantiate(go,new Vector3(i, j, 0),Quaternion.identity);
-				go.name="Tile("+i+","+j+")";
+				if (i == 0 || j == 0 || i == width - 1 || j == height - 1){
+					wall = Instantiate(wall,new Vector3(i, j, 0),Quaternion.identity);
+					wall.name="Tile("+i+","+j+")";
+				}
+				else{
+					ground = Instantiate(ground,new Vector3(i, j, 0),Quaternion.identity);
+					ground.name="Tile("+i+","+j+")";
+				}
 			}
 		}
 	}
