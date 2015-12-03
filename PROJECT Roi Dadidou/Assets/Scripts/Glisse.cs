@@ -41,32 +41,52 @@ public class Glisse : MonoBehaviour {
 			up = false;
 		if (Mathf.Round(collision.gameObject.transform.position.y) < Mathf.Round(transform.position.y))
 			down =false;
-
-		if (collision.gameObject.tag == "Player" ) {
-			moving = true;
-			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
-			direction = player.getLastInput();
-		} else {
-			moving = false;
-			pos.x = Mathf.Round (transform.position.x);
-			pos.y = Mathf.Round (transform.position.y);
-			transform.position = pos;
-		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision){
 
-		if (Mathf.Round(collision.gameObject.transform.position.x) > Mathf.Round(transform.position.x) )
+		if ((Mathf.Round(collision.gameObject.transform.position.x) > Mathf.Round(transform.position.x)) && (Mathf.Round(collision.gameObject.transform.position.y) == Mathf.Round(transform.position.y)) ){
 			right = true;
-		if (Mathf.Round(collision.gameObject.transform.position.x) < Mathf.Round(transform.position.x))
+		}
+		if ((Mathf.Round(collision.gameObject.transform.position.x) < Mathf.Round(transform.position.x)) && (Mathf.Round(collision.gameObject.transform.position.y) == Mathf.Round(transform.position.y)) ){
 			left = true;
-		if (Mathf.Round(collision.gameObject.transform.position.y) > Mathf.Round(transform.position.y) )
+		}
+		if ((Mathf.Round(collision.gameObject.transform.position.y) > Mathf.Round(transform.position.y)) && (Mathf.Round(collision.gameObject.transform.position.x) == Mathf.Round(transform.position.x)) ){
 			up = true;
-		if (Mathf.Round(collision.gameObject.transform.position.y) < Mathf.Round(transform.position.y))
+		}
+		if ((Mathf.Round(collision.gameObject.transform.position.y) < Mathf.Round(transform.position.y)) && (Mathf.Round(collision.gameObject.transform.position.x) == Mathf.Round(transform.position.x)) ){
 			down = true;
-		pos.x = Mathf.Round (transform.position.x);
-		pos.y = Mathf.Round (transform.position.y);
-		transform.position = pos;
+		}
+
+		if (collision.gameObject.tag == "Player" ) {
+			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
+			direction = player.getLastInput();
+		}else {
+			if ((Mathf.Round(collision.gameObject.transform.position.x) > Mathf.Round(transform.position.x)) && (Mathf.Round(collision.gameObject.transform.position.y) == Mathf.Round(transform.position.y)) ){
+				if (direction == "right"){
+					direction = null;
+					pos.x = Mathf.Round (transform.position.x);
+				}
+			}
+			if ((Mathf.Round(collision.gameObject.transform.position.x) < Mathf.Round(transform.position.x)) && (Mathf.Round(collision.gameObject.transform.position.y) == Mathf.Round(transform.position.y)) ){
+				if (direction == "left"){
+					direction = null;
+					pos.x = Mathf.Round (transform.position.x);
+				}
+			}
+			if ((Mathf.Round(collision.gameObject.transform.position.y) > Mathf.Round(transform.position.y)) && (Mathf.Round(collision.gameObject.transform.position.x) == Mathf.Round(transform.position.x)) ){
+				if (direction == "up"){
+					direction = null;
+					pos.y = Mathf.Round (transform.position.y);
+				}
+			}
+			if ((Mathf.Round(collision.gameObject.transform.position.y) < Mathf.Round(transform.position.y)) && (Mathf.Round(collision.gameObject.transform.position.x) == Mathf.Round(transform.position.x)) ){
+				if (direction == "down"){
+					direction = null;
+					pos.y = Mathf.Round (transform.position.y);
+				}
+			}
+		}
 	}
 
 
