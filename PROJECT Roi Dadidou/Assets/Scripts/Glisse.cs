@@ -12,6 +12,7 @@ public class Glisse : MonoBehaviour {
 	PlayerWalk player;
 	Vector2 collisionposition;
 	Vector2 position;
+	int nbCoups = 5;
 	// Use this for initialization
 	void Start () {
 		pos = transform.position;
@@ -42,6 +43,19 @@ public class Glisse : MonoBehaviour {
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
+
+			if (direction == "right" && right ){
+				fonctBlocDestruction();
+			}
+			if (direction == "left" && left){
+				fonctBlocDestruction();
+			}
+			if (direction == "up" && up){
+				fonctBlocDestruction();
+			}
+			if (direction == "down" && down){
+				fonctBlocDestruction();
+			}
 		}else {
 			if ((collisionposition.x > position.x) && (collisionposition.y == position.y)){
 				if (direction == "right"){
@@ -89,6 +103,9 @@ public class Glisse : MonoBehaviour {
 		}
 	}
 
-
-
+	public void fonctBlocDestruction(){
+		nbCoups--;
+		if (nbCoups == 0)
+			Destroy(gameObject);
+	}
 }
