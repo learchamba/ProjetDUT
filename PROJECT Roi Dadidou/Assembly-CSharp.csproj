@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Glisse.cs" />
+     <Compile Include="Assets\Scripts\GlisseClé.cs" />
      <Compile Include="Assets\Scripts\GridScript.cs" />
+     <Compile Include="Assets\Scripts\Initialize.cs" />
      <Compile Include="Assets\Scripts\PlayerWalk.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
