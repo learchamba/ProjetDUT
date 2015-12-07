@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Glisse : MonoBehaviour {
+public class GlisseClé : MonoBehaviour {
 	Vector3 pos;                                // For movement
 	float speed = 4.0f; 
 	bool left = false;
@@ -13,37 +13,42 @@ public class Glisse : MonoBehaviour {
 	Vector2 collisionposition;
 	Vector2 position;
 	int nbCoups = 5;
+	public  Object exit;
+	public  static int nbBlocClé;
+	public  int xExit;
+	public  int yExit;
 	// Use this for initialization
 	void Start () {
 		pos = transform.position;
+		nbBlocClé = GameObject.FindGameObjectsWithTag("GlisseClé").Length ;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-			if (direction == "right" && !right )
-				pos.x++;
-			if (direction == "left" && !left)
-				pos.x--;
-			if (direction == "up" && !up)
-				pos.y++;
-			if (direction == "down" && !down)
-				pos.y--;
-
-			transform.position = Vector3.MoveTowards (transform.position, pos, Time.deltaTime * speed);
-
+		if (direction == "right" && !right )
+			pos.x++;
+		if (direction == "left" && !left)
+			pos.x--;
+		if (direction == "up" && !up)
+			pos.y++;
+		if (direction == "down" && !down)
+			pos.y--;
+		
+		transform.position = Vector3.MoveTowards (transform.position, pos, Time.deltaTime * speed);
+		
 	}
-
+	
 	void OnCollisionExit2D(Collision2D collision){
 		fonctCollision(false,collision);
 	}
-
+	
 	void OnCollisionEnter2D(Collision2D collision){
 		fonctCollision(true,collision);
-
+		
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
-
+			
 			if (direction == "right" && right ){
 				fonctBlocDestruction();
 			}
@@ -83,7 +88,7 @@ public class Glisse : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	public void fonctCollision(bool etat, Collision2D collision){
 		position.x = Mathf.Round(transform.position.x) ;
 		position.y = Mathf.Round(transform.position.y) ;
@@ -102,10 +107,15 @@ public class Glisse : MonoBehaviour {
 			down = etat;
 		}
 	}
-
+	
 	public void fonctBlocDestruction(){
 		nbCoups--;
-		if (nbCoups == 0)
+		if (nbCoups == 0){
 			Destroy(gameObject);
+			nbBlocClé--;
+			if (nbBlocClé == 0){
+				exit = Instantiate(exit,new Vector3(xExit, yExit, 0),Quaternion.identity);
+			}
+		}
 	}
 }

@@ -49,7 +49,9 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Glisse.cs" />
+     <Compile Include="Assets\Scripts\GlisseClé.cs" />
      <Compile Include="Assets\Scripts\GridScript.cs" />
+     <Compile Include="Assets\Scripts\Initialize.cs" />
      <Compile Include="Assets\Scripts\PlayerWalk.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
