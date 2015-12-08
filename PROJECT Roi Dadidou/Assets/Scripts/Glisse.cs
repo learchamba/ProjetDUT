@@ -37,6 +37,11 @@ public class Glisse : MonoBehaviour {
 		fonctCollision(false,collision);
 	}
 
+	void OnCollisionStay2D(Collision2D collision){
+		fonctCollision(true,collision);
+	}
+
+
 	void OnCollisionEnter2D(Collision2D collision){
 		fonctCollision(true,collision);
 
