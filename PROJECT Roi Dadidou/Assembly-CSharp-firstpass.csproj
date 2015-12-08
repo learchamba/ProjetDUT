@@ -6,10 +6,10 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{08BEA03A-C244-D7C9-748F-BA786E618A03}</ProjectGuid>
+	<ProjectGuid>{C290C86D-0E65-D139-9D71-5D8A969C0B6B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -45,11 +45,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Glisse.cs" />
-     <Compile Include="Assets\Scripts\GlisseClé.cs" />
-     <Compile Include="Assets\Scripts\GridScript.cs" />
-     <Compile Include="Assets\Scripts\Initialize.cs" />
-     <Compile Include="Assets\Scripts\PlayerWalk.cs" />
+     <Compile Include="Assets\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
+     <Compile Include="Assets\Standard Assets\2D\Scripts\CameraFollow.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -62,10 +59,6 @@
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C290C86D-0E65-D139-9D71-5D8A969C0B6B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
