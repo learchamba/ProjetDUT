@@ -151,6 +151,7 @@ public class Glisse : MonoBehaviour {
 
 	public void fonctBlocDestruction(){
 		nbCoups--;
+		direction = null;
 		if (nbCoups == 0)
 			Destroy(gameObject);
 	}
