@@ -45,6 +45,9 @@ public class Glisse : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision){
 		fonctCollisionEnter(collision);
 
+		if (collision.gameObject.tag == "Enemy" )
+			fonctCollisionDestruction(collision);
+
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
@@ -124,6 +127,25 @@ public class Glisse : MonoBehaviour {
 		}
 		if ((collisionposition.y < position.y)){
 			down = false;
+		}
+	}
+
+	public void fonctCollisionDestruction(Collision2D collision){
+		position.x = Mathf.Round(transform.position.x) ;
+		position.y = Mathf.Round(transform.position.y) ;
+		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
+		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
+		if ((collisionposition.x > position.x)){
+			Destroy(collision.gameObject);
+		}
+		if ((collisionposition.x < position.x)){
+			Destroy(collision.gameObject);
+		}
+		if ((collisionposition.y > position.y)){
+			Destroy(collision.gameObject);
+		}
+		if ((collisionposition.y < position.y)){
+			Destroy(collision.gameObject);
 		}
 	}
 

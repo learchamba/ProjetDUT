@@ -11,10 +11,13 @@ public class Grid {
 }
 
 public class GridScript : MonoBehaviour {
-	public Object ground;
+	public Object ground1;
+	public Object ground2;
+	public Object ground3;
 	public Object wall;
 	public int width;
 	public int height;
+	float aléa;
 	Grid grid;
 
 	void Start()
@@ -26,13 +29,22 @@ public class GridScript : MonoBehaviour {
 				if (i == 0 || j == 0 || i == width - 1 || j == height - 1){
 					wall = Instantiate(wall,new Vector3(i, j, 0),Quaternion.identity);
 					wall.name="Tile("+i+","+j+")";
-					//grid.grid[i].tile[j].AddComponent(wall);
 
 				}
 				else{
-					ground = Instantiate(ground,new Vector3(i, j, 0),Quaternion.identity);
-					ground.name="Tile("+i+","+j+")";
-					//grid.grid[i].tile[j].AddComponent(ground);
+					aléa = Mathf.Round(Random.Range(0,2));
+					if (aléa == 0){
+					ground1 = Instantiate(ground1,new Vector3(i, j, 0),Quaternion.identity);
+					ground1.name="Tile("+i+","+j+")";
+					}
+					if (aléa == 1){
+						ground2 = Instantiate(ground2,new Vector3(i, j, 0),Quaternion.identity);
+						ground2.name="Tile("+i+","+j+")";
+					}
+					if (aléa == 0){
+						ground3 = Instantiate(ground3,new Vector3(i, j, 0),Quaternion.identity);
+						ground3.name="Tile("+i+","+j+")";
+					}
 				}
 			}
 		}
