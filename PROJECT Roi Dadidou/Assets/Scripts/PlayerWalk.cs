@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerWalk : MonoBehaviour {
 	Vector3 pos;                                // For movement
-	float speed = 2.0f;                         // Speed of movement
+	public float speed = 2.0f;                         // Speed of movement
 	int time = 0;
 	public int width;
 	public int height;

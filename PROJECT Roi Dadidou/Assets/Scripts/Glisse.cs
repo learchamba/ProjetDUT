@@ -35,11 +35,16 @@ public class Glisse : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D collision){
-		fonctCollision(false,collision);
+		fonctCollisionExit(collision);
 	}
 
+	void OnCollisionStay2D(Collision2D collision){
+		fonctCollisionEnter(collision);
+	}
+
+
 	void OnCollisionEnter2D(Collision2D collision){
-		fonctCollision(true,collision);
+		fonctCollisionEnter(collision);
 
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
@@ -85,22 +90,41 @@ public class Glisse : MonoBehaviour {
 		}
 	}
 
-	public void fonctCollision(bool etat, Collision2D collision){
+	public void fonctCollisionEnter(Collision2D collision){
 		position.x = Mathf.Round(transform.position.x) ;
 		position.y = Mathf.Round(transform.position.y) ;
 		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
 		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
 		if ((collisionposition.x > position.x) && (collisionposition.y == position.y)){
-			right = etat;
+			right = true;
 		}
 		if ((collisionposition.x < position.x) && (collisionposition.y == position.y)){
-			left = etat;
+			left = true;
 		}
 		if ((collisionposition.y > position.y) && (collisionposition.x == position.x)){
-			up = etat;
+			up = true;
 		}
 		if ((collisionposition.y < position.y) && (collisionposition.x == position.x)){
-			down = etat;
+			down = true;
+		}
+	}
+
+	public void fonctCollisionExit(Collision2D collision){
+		position.x = Mathf.Round(transform.position.x) ;
+		position.y = Mathf.Round(transform.position.y) ;
+		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
+		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
+		if ((collisionposition.x > position.x)){
+			right = false;
+		}
+		if ((collisionposition.x < position.x)){
+			left = false;
+		}
+		if ((collisionposition.y > position.y)){
+			up = false;
+		}
+		if ((collisionposition.y < position.y)){
+			down = false;
 		}
 	}
 
