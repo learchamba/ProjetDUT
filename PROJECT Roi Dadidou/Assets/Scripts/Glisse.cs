@@ -16,6 +16,7 @@ public class Glisse : MonoBehaviour {
 	int nbCoups = 5;
 	// Use this for initialization
 	void Start () {
+        
 		pos = transform.position;
 	}
 	
