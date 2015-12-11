@@ -10,10 +10,11 @@ public class GlisseClé : MonoBehaviour {
 	bool down = false;
 	string direction = null;
 	PlayerWalk player;
+	GameObject exit;
 	Vector2 collisionposition;
 	Vector2 position;
 	int nbCoups = 5;
-	public  Object exit;
+	SpriteRenderer sprite;
 	public  static int nbBlocClé;
 	public  int xExit;
 	public  int yExit;
@@ -114,7 +115,9 @@ public class GlisseClé : MonoBehaviour {
 			Destroy(gameObject);
 			nbBlocClé--;
 			if (nbBlocClé == 0){
-				exit = Instantiate(exit,new Vector3(xExit, yExit, 0),Quaternion.identity);
+				exit = GameObject.FindGameObjectWithTag("Exit") ;
+				sprite = exit.GetComponent("SpriteRenderer") as SpriteRenderer ;
+				sprite.enabled = true;
 			}
 		}
 	}
