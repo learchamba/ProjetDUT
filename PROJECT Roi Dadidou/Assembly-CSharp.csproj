@@ -46,6 +46,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Camera2DFollow.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Main Scripts\GUIEffects.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Main Scripts\GUIMainCamera.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Main Scripts\GUITween.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Other Scripts\CloudScript.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Other Scripts\EnvironmentScript.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Other Scripts\HeightResize.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Other Scripts\SpriteResizer.cs" />
+     <Compile Include="Assets\GUI Effects\Scripts\Other Scripts\WidthResize.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Exit.cs" />

@@ -4,10 +4,10 @@ using System.Collections;
 public class Glisse : MonoBehaviour {
 	Vector3 pos;                                // For movement
 	float speed = 4.0f; 
-	bool left = false;
-	bool right = false;
-	bool up = false;
-	bool down = false;
+	public bool left = false;
+	public bool right = false;
+	public bool up = false;
+	public bool down = false;
 	bool moving = false;
 	string direction = null;
 	PlayerWalk player;
@@ -50,8 +50,13 @@ public class Glisse : MonoBehaviour {
 				fonctCollisionDestruction(collision);
 			}
 		}
-		else{
+		else if (collision.gameObject.tag != "Player" ){
+			if (moving == true) {
+				fonctCollisionExit(collision);
+			}
+			else{
 			fonctCollisionEnter(collision);
+			}
 		}
 
 	}
@@ -65,7 +70,6 @@ public class Glisse : MonoBehaviour {
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
-			moving = true;
 			if (direction == "right" && right ){
 				fonctBlocDestruction();
 			}
@@ -77,6 +81,9 @@ public class Glisse : MonoBehaviour {
 			}
 			else if (direction == "down" && down){
 				fonctBlocDestruction();
+			}
+			else{
+				moving = true;
 			}
 		}
 		else if (collision.gameObject.tag == "Enemy" ){

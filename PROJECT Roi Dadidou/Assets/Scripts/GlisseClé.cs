@@ -4,10 +4,11 @@ using System.Collections;
 public class GlisseClé : MonoBehaviour {
 	Vector3 pos;                                // For movement
 	float speed = 4.0f; 
-	bool left = false;
-	bool right = false;
-	bool up = false;
-	bool down = false;
+	public bool left = false;
+	public bool right = false;
+	public bool up = false;
+	public bool down = false;
+	bool moving = false;
 	string direction = null;
 	PlayerWalk player;
 	GameObject exit;
@@ -26,89 +27,171 @@ public class GlisseClé : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (direction == "right" && !right )
+		if (direction == "right" && !right ){
 			pos.x++;
-		if (direction == "left" && !left)
+		}
+		if (direction == "left" && !left){
 			pos.x--;
-		if (direction == "up" && !up)
-			pos.y++;
-		if (direction == "down" && !down)
+		}
+		if (direction == "up" && !up){
+			pos.y++;}
+		
+		if (direction == "down" && !down){
 			pos.y--;
+		}
 		
 		transform.position = Vector3.MoveTowards (transform.position, pos, Time.deltaTime * speed);
 		
 	}
 	
 	void OnCollisionExit2D(Collision2D collision){
-		fonctCollision(false,collision);
+		fonctCollisionExit(collision);
 	}
 	
+	void OnCollisionStay2D(Collision2D collision){
+		
+		if (collision.gameObject.tag == "Enemy" ){
+			if (moving == true){
+				fonctCollisionDestruction(collision);
+			}
+		}
+		if (moving == true) {
+			fonctCollisionExit(collision);
+		}
+		else{
+			fonctCollisionEnter(collision);
+		}
+
+		
+	}
+	
+	
 	void OnCollisionEnter2D(Collision2D collision){
-		fonctCollision(true,collision);
+		
+		
+		
 		
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
-			
 			if (direction == "right" && right ){
 				fonctBlocDestruction();
 			}
-			if (direction == "left" && left){
+			else if (direction == "left" && left){
 				fonctBlocDestruction();
 			}
-			if (direction == "up" && up){
+			else if (direction == "up" && up){
 				fonctBlocDestruction();
 			}
-			if (direction == "down" && down){
+			else if (direction == "down" && down){
 				fonctBlocDestruction();
 			}
-		}else {
+			else{
+				moving = true;
+			}
+		}
+		else if (collision.gameObject.tag == "Enemy" ){
+			if (moving == true){
+				fonctCollisionDestruction(collision);
+			}
+		}
+		else	{
+			fonctCollisionEnter(collision);
 			if ((collisionposition.x > position.x) && (collisionposition.y == position.y)){
 				if (direction == "right"){
 					direction = null;
+					moving = false;
 					pos.x = Mathf.Round (transform.position.x);
 				}
 			}
 			if ((collisionposition.x < position.x) && (collisionposition.y == position.y)){
 				if (direction == "left"){
 					direction = null;
+					moving = false;
 					pos.x = Mathf.Round (transform.position.x);
 				}
 			}
 			if ((collisionposition.y > position.y) && (collisionposition.x == position.x)){
 				if (direction == "up"){
 					direction = null;
+					moving = false;
 					pos.y = Mathf.Round (transform.position.y);
 				}
 			}
 			if ((collisionposition.y < position.y) && (collisionposition.x == position.x)){
 				if (direction == "down"){
 					direction = null;
+					moving = false;
 					pos.y = Mathf.Round (transform.position.y);
 				}
 			}
 		}
 	}
 	
-	public void fonctCollision(bool etat, Collision2D collision){
+	public void fonctCollisionEnter(Collision2D collision){
+		if (collision.gameObject.tag != "Ennemy"){
+			position.x = Mathf.Round(transform.position.x) ;
+			position.y = Mathf.Round(transform.position.y) ;
+			collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
+			collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
+			if ((collisionposition.x > position.x) && (collisionposition.y == position.y)){
+				right = true;
+			}
+			if ((collisionposition.x < position.x) && (collisionposition.y == position.y)){
+				left = true;
+			}
+			if ((collisionposition.y > position.y) && (collisionposition.x == position.x)){
+				up = true;
+			}
+			if ((collisionposition.y < position.y) && (collisionposition.x == position.x)){
+				down = true;
+			}
+		}
+	}
+	
+	public void fonctCollisionExit(Collision2D collision){
 		position.x = Mathf.Round(transform.position.x) ;
 		position.y = Mathf.Round(transform.position.y) ;
 		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
 		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
-		if ((collisionposition.x > position.x) && (collisionposition.y == position.y)){
-			right = etat;
+		if ((collisionposition.x > position.x)){
+			right = false;
 		}
-		if ((collisionposition.x < position.x) && (collisionposition.y == position.y)){
-			left = etat;
+		if ((collisionposition.x < position.x)){
+			left = false;
 		}
-		if ((collisionposition.y > position.y) && (collisionposition.x == position.x)){
-			up = etat;
+		if ((collisionposition.y > position.y)){
+			up = false;
 		}
-		if ((collisionposition.y < position.y) && (collisionposition.x == position.x)){
-			down = etat;
+		if ((collisionposition.y < position.y)){
+			down = false;
 		}
 	}
 	
+	public void fonctCollisionDestruction(Collision2D collision){
+		position.x = Mathf.Round(transform.position.x) ;
+		position.y = Mathf.Round(transform.position.y) ;
+		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
+		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
+		if ((collisionposition.x > position.x) && (collisionposition.y == position.y)  && direction =="right" ){
+			Destroy(collision.gameObject);
+			right = false;
+		}
+		if ((collisionposition.x < position.x) && (collisionposition.y == position.y)  && direction =="left" ){
+			Destroy(collision.gameObject);
+			left = false;
+		}
+		if ((collisionposition.y > position.y) && (collisionposition.x == position.x)  && direction =="up" ){
+			Destroy(collision.gameObject);
+			up = false;
+		}
+		if ((collisionposition.y < position.y) && (collisionposition.x == position.x)  && direction =="down" ){
+			Destroy(collision.gameObject);
+			down = false;
+		}
+	}
+
+
 	public void fonctBlocDestruction(){
 		nbCoups--;
 		if (nbCoups == 0){

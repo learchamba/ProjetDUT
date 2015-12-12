@@ -2,13 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Column {
-	public GameObject[] tile ;
-}
-
-public class Grid {
-	public Column[] grid;
-}
 
 public class GridScript : MonoBehaviour {
 	public Object ground1;
@@ -18,7 +11,6 @@ public class GridScript : MonoBehaviour {
 	public int width;
 	public int height;
 	float aléa;
-	Grid grid;
 
 	void Start()
 	{
@@ -27,6 +19,7 @@ public class GridScript : MonoBehaviour {
 			for(int j = 0;j<height;j++)
 			{
 				if (i == 0 || j == 0 || i == width - 1 || j == height - 1){
+
 					wall = Instantiate(wall,new Vector3(i, j, 0),Quaternion.identity);
 					wall.name="Tile("+i+","+j+")";
 
@@ -34,8 +27,8 @@ public class GridScript : MonoBehaviour {
 				else{
 					aléa = Mathf.Round(Random.Range(0,2));
 					if (aléa == 0){
-					ground1 = Instantiate(ground1,new Vector3(i, j, 0),Quaternion.identity);
-					ground1.name="Tile("+i+","+j+")";
+						ground1 = Instantiate(ground1,new Vector3(i, j, 0),Quaternion.identity);
+						ground1.name="Tile("+i+","+j+")";
 					}
 					if (aléa == 1){
 						ground2 = Instantiate(ground2,new Vector3(i, j, 0),Quaternion.identity);
