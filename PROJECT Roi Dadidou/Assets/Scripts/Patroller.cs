@@ -13,16 +13,20 @@ public class Patroller : MonoBehaviour {
 	float tampony;
 	public float xtarget;
 	public float ytarget;
+	public Animator anim;
 	void Start () {
 		pos = transform.position; 
 		xspawn = pos.x;
 		yspawn = pos.y;
+		anim = GetComponent<Animator> ();
 	}
 	
 	void FixedUpdate () {
 		if (transform.position == pos){
 			if(xtarget > xspawn){
 				if ( Mathf.Round (transform.position.x) < xtarget){
+					transform.localScale = new Vector3 (-5, 5, 1);
+					anim.SetInteger("AnimState",1);
 					pos.x ++;
 					time = 0;
 				}
@@ -36,6 +40,8 @@ public class Patroller : MonoBehaviour {
 			if(xtarget <= xspawn){
 				if ( Mathf.Round (transform.position.x) > xtarget){
 					pos.x--;
+					transform.localScale = new Vector3 (5, 5, 1);
+					anim.SetInteger("AnimState",1);
 					time = 0;
 				}else{
 					tamponx = xtarget;
@@ -46,10 +52,12 @@ public class Patroller : MonoBehaviour {
 
 			if(ytarget > yspawn){
 				if ( Mathf.Round (transform.position.y) < ytarget){
+					anim.SetInteger("AnimState",2);
 					pos.y ++;
 					time = 0;
 				}
 				else{
+
 					tampony = ytarget;
 					ytarget = yspawn;
 					yspawn = tampony;
@@ -57,11 +65,13 @@ public class Patroller : MonoBehaviour {
 			}
 
 			if(ytarget <= yspawn){
-				if ( Mathf.Round (transform.position.y) < ytarget){
+				if ( Mathf.Round (transform.position.y) > ytarget){
+					anim.SetInteger("AnimState",3);
 					pos.y --;
 					time = 0;
 				}
 				else{
+
 					tampony = ytarget;
 					ytarget = yspawn;
 					yspawn = tampony;
