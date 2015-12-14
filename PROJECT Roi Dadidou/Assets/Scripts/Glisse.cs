@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Glisse : MonoBehaviour {
-	Vector3 pos;                                // For movement
+	Vector3 pos;                           
 	float speed = 4.0f; 
 	public bool left = false;
 	public bool right = false;
@@ -192,5 +192,10 @@ public class Glisse : MonoBehaviour {
 		direction = null;
 		if (nbCoups == 0)
 			Destroy(gameObject);
+	}
+
+	public void fonctIncrementScore(Collision2D collision){
+
+
 	}
 }
