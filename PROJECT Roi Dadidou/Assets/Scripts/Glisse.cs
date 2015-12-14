@@ -171,18 +171,22 @@ public class Glisse : MonoBehaviour {
 		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
 		if ((collisionposition.x > position.x) && (collisionposition.y == position.y)  && direction =="right" ){
 			Destroy(collision.gameObject);
+			fonctIncrementScore(collision,1);
 			right = false;
 		}
 		if ((collisionposition.x < position.x) && (collisionposition.y == position.y)  && direction =="left" ){
 			Destroy(collision.gameObject);
+			fonctIncrementScore(collision,1);
 			left = false;
 		}
 		if ((collisionposition.y > position.y) && (collisionposition.x == position.x)  && direction =="up" ){
 			Destroy(collision.gameObject);
+			fonctIncrementScore(collision,1);
 			up = false;
 		}
 		if ((collisionposition.y < position.y) && (collisionposition.x == position.x)  && direction =="down" ){
 			Destroy(collision.gameObject);
+			fonctIncrementScore(collision,1);
 			down = false;
 		}
 	}
@@ -194,8 +198,9 @@ public class Glisse : MonoBehaviour {
 			Destroy(gameObject);
 	}
 
-	public void fonctIncrementScore(Collision2D collision){
-
+	public void fonctIncrementScore(Collision2D collision, int combo){
+		Exit.score += 500 * combo;
+		print ("score up");
 
 	}
 }
