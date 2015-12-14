@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerWalk : MonoBehaviour {
 	Vector3 pos;                                // For movement
 	public float speed = 2.0f;                         // Speed of movement
-	int time = 0;
+	public int time = 0;
 	public int width;
 	public int height;
 	string lastInput;
@@ -40,15 +40,15 @@ public class PlayerWalk : MonoBehaviour {
 		} else if (transform.position == pos) {
 			Anim.SetInteger ("AnimState", 0);
 		}
-
-	
 		time++;
-
-		if (time == 20) {
+		
+		if (time == 15) {
 			pos.x = Mathf.Round (transform.position.x);
 			pos.y = Mathf.Round (transform.position.y);
 		}
 		else
+	
+
 			transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);    // Move there
 	}
 

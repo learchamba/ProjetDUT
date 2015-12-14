@@ -44,7 +44,6 @@ public class Glisse : MonoBehaviour {
 	}
 
 	void OnCollisionStay2D(Collision2D collision){
-
 		if (collision.gameObject.tag == "Enemy" ){
 			if (moving == true){
 				fonctCollisionDestruction(collision);
@@ -63,10 +62,6 @@ public class Glisse : MonoBehaviour {
 
 
 	void OnCollisionEnter2D(Collision2D collision){
-
-	
-
-
 		if (collision.gameObject.tag == "Player" ) {
 			player = collision.gameObject.GetComponent("PlayerWalk") as PlayerWalk ;
 			direction = player.getLastInput();
@@ -146,10 +141,12 @@ public class Glisse : MonoBehaviour {
 	}
 
 	public void fonctCollisionExit(Collision2D collision){
+
 		position.x = Mathf.Round(transform.position.x) ;
 		position.y = Mathf.Round(transform.position.y) ;
 		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
 		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
+	
 		if ((collisionposition.x > position.x)){
 			right = false;
 		}
@@ -193,9 +190,13 @@ public class Glisse : MonoBehaviour {
 
 	public void fonctBlocDestruction(){
 		nbCoups--;
+	
 		direction = null;
-		if (nbCoups == 0)
-			Destroy(gameObject);
+		player.Anim.SetInteger ("AnimState", 4);
+		if (nbCoups == 0) {
+		
+			Destroy (gameObject);
+		}
 	}
 
 	public void fonctIncrementScore(Collision2D collision, int combo){
