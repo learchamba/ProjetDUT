@@ -34,7 +34,7 @@ public class GridScript : MonoBehaviour {
 						ground2 = Instantiate(ground2,new Vector3(i, j, 0),Quaternion.identity);
 						ground2.name="Tile("+i+","+j+")";
 					}
-					if (aléa == 0){
+					if (aléa == 2){
 						ground3 = Instantiate(ground3,new Vector3(i, j, 0),Quaternion.identity);
 						ground3.name="Tile("+i+","+j+")";
 					}
