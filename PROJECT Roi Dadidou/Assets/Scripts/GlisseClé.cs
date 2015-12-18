@@ -173,22 +173,22 @@ public class GlisseClé : MonoBehaviour {
 		position.y = Mathf.Round(transform.position.y) ;
 		collisionposition.x = Mathf.Round(collision.gameObject.transform.position.x);
 		collisionposition.y = Mathf.Round(collision.gameObject.transform.position.y);
-		if ((collisionposition.x > position.x) && ( -0.5 <(position.y).CompareTo(collisionposition.y)) && (0.5 >(position.y).CompareTo(collisionposition.y)) && direction =="right" ){
+		if ((collisionposition.x > position.x) && ( -0.5 <(position.y).CompareTo(collisionposition.y)) && (0.5 >(position.y).CompareTo(collisionposition.y)) && direction != "left" && direction != null){
 			Destroy(collision.gameObject);
 			fonctIncrementScore(collision,1);
 			right = false;
 		}
-		if ((collisionposition.x < position.x) && ( -0.5 <(position.y).CompareTo(collisionposition.y)) && (0.5 >(position.y).CompareTo(collisionposition.y))  && direction =="left" ){
+		if ((collisionposition.x < position.x) && ( -0.5 <(position.y).CompareTo(collisionposition.y)) && (0.5 >(position.y).CompareTo(collisionposition.y))  && direction != "right" && direction != null ){
 			Destroy(collision.gameObject);
 			fonctIncrementScore(collision,1);
 			left = false;
 		}
-		if ((collisionposition.y > position.y) && ( -0.5 <(position.x).CompareTo(collisionposition.x)) && (0.5 >(position.x).CompareTo(collisionposition.x))  && direction =="up" ){
+		if ((collisionposition.y > position.y) && ( -0.5 <(position.x).CompareTo(collisionposition.x)) && (0.5 >(position.x).CompareTo(collisionposition.x))  && direction != "down" && direction != null ){
 			Destroy(collision.gameObject);
 			fonctIncrementScore(collision,1);
 			up = false;
 		}
-		if ((collisionposition.y < position.y) && (collisionposition.x == position.x)  && direction =="down" ){
+		if ((collisionposition.y < position.y) && ( -0.5 <(position.x).CompareTo(collisionposition.x)) && (0.5 >(position.x).CompareTo(collisionposition.x))&& direction != "up" && direction != null ){
 			Destroy(collision.gameObject);
 			fonctIncrementScore(collision,1);
 			down = false;
