@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Grid.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\GridEditor.cs">
     <Files>
-      <File FileName="Assets\Scripts\GridScript.cs" Line="26" Column="6" />
-      <File FileName="Assets\Scripts\Grid.cs" Line="16" Column="43" />
+      <File FileName="Assets\Editor\GridEditor.cs" Line="96" Column="94" />
+      <File FileName="Assets\Scripts\TileSet.cs" Line="5" Column="46" />
+      <File FileName="Assets\Scripts\Grid.cs" Line="12" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

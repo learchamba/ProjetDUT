@@ -6,6 +6,8 @@ public class Grid : MonoBehaviour {
 	public float width = 20.0f;
 	public float height = 10.0f;
 	public Color color = Color.white;
+	public Transform tilePrefab ;
+	public TileSet tileSet;
 
 	void OnDrawGizmos(){
 		Vector3 pos = transform.position ;
